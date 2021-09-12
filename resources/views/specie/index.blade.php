@@ -6,15 +6,26 @@
        <div class="col-md-8">
            <div class="card">
                <div class="card-header">Species</div>
-                <div class="card-body">             
-                    @foreach ($species as $specie)
-                      <a href="{{route('specie.edit',[$specie])}}">{{$specie->name}} {{$specie->surname}}</a>
-                      <form method="POST" action="{{route('specie.destroy', $specie)}}">
-                      @csrf
-                      <button type="submit">DELETE</button>
-                      </form>
-                      <br>
-                    @endforeach
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach ($species as $specie)
+                        <li class="list-group-item">
+                            <div class="listBlock">
+                                <div  class="listBlock__content">
+                                    <h4>{{$specie->name}}</h4>
+                                </div>
+
+                                <div class="listBlock__buttons">
+                                    <a href="{{route('specie.edit',[$specie])}}" class="btn btn-info">Edit</a>
+                                    <form method="POST" action="{{route('specie.destroy', $specie)}}">
+                                        <button class="btn btn-danger" type="submit">DELETE</button>
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div> 
+                        </li>
+                        @endforeach
+                    </ul>        
                </div>
            </div>
        </div>

@@ -6,12 +6,16 @@
        <div class="col-md-8">
            <div class="card">
                <div class="card-header">New species</div>
-                <div class="card-body">             
-                     <form method="POST" action="{{route('specie.store')}}">
-                        Name: <input type="text" name="specie_name">
-                        @csrf
-                        <button type="submit">ADD</button>
-                     </form>
+                <div class="card-body">
+                    <div class="block__form">
+                        <form method="POST" action="{{route('specie.store')}}">
+                            <label class="form-label">Name </label>
+                            <input class="form-control" type="text" name="specie_name">
+                            @csrf
+                            <button type="submit">ADD</button>
+                        </form> 
+                    </div>
+                        
                </div>
            </div>
        </div>

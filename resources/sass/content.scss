@@ -1,0 +1,19 @@
+.card-header {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.listBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__content {
+    }
+
+    &__buttons {
+        display: flex;
+        .btn {
+            margin: 0px 5px;
+        }
+    }
+}
