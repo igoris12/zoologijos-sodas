@@ -8,12 +8,29 @@
     align-items: center;
     justify-content: space-between;
     &__content {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 10px;
     }
 
     &__buttons {
         display: flex;
         .btn {
             margin: 0px 5px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .listBlock {
+        flex-direction: column;
+        &__content {
+            display: grid;
+            grid-template-columns: auto;
+            gap: 10px;
+            .item {
+                text-align: center;
+            }
         }
     }
 }

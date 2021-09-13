@@ -10012,9 +10012,28 @@ h3 {
   align-items: center;
   justify-content: space-between;
 }
+.listBlock__content {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
 .listBlock__buttons {
   display: flex;
 }
 .listBlock__buttons .btn {
   margin: 0px 5px;
+}
+
+@media (max-width: 600px) {
+  .listBlock {
+    flex-direction: column;
+  }
+  .listBlock__content {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 10px;
+  }
+  .listBlock__content .item {
+    text-align: center;
+  }
 }
