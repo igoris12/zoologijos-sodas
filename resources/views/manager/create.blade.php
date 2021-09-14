@@ -19,7 +19,7 @@
                                 <input class="form-control" type="text" name="manager_surname">
                             </div>
 
-                            <div class="form-group">
+                           <div class="form-group">
                                 <label class="form-label">Specie</label>
                                 <select name="specie_id" >
                                     @foreach ($species as $specie)
@@ -27,6 +27,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             @csrf
                             <button type="submit" class="btn btn-success">Add</button>
                         </form> 

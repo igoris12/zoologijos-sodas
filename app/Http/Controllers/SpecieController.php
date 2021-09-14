@@ -39,7 +39,7 @@ class SpecieController extends Controller
         $specie = new Specie;
         $specie->name = $request->specie_name;
         $specie->save();
-        return redirect()->route('specie.index');
+        return redirect()->route('specie.index')->with('success_message', 'New specie added.');
 
     }
 
@@ -90,10 +90,11 @@ class SpecieController extends Controller
     public function destroy(specie $specie)
     {
         if($specie->getManager->count() || $specie->getAnimal->count() ){
-           return 'Trinti negalima, nes turi knygų';
+          return redirect()->route('specie.index')->with('info_message', 'You cant delete this specie.');
+
        }
        $specie->delete();
-       return redirect()->route('specie.index');
+       return redirect()->route('specie.index')->with('success_message', 'Specie was successfuly deleted.');
 
     }
 }

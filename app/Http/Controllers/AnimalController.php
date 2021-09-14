@@ -113,6 +113,6 @@ class AnimalController extends Controller
     public function destroy(animal $animal)
     {
         $animal->delete();
-        return redirect()->route('animal.index');
+        return redirect()->route('animal.index')->with('success_message', 'Animal was successfuly deleted.');
     }
 }

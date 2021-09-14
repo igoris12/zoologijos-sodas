@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\manager;
 use Illuminate\Http\Request;
 use App\Models\Specie;
+use App\Models\Specie as AnimalSpecie;
+
 
 
 class ManagerController extends Controller
@@ -28,8 +30,9 @@ class ManagerController extends Controller
      */
     public function create()
     {
-        $species = Specie::all();
-        return view('manager.create', ['species' => $species]);
+        $species = AnimalSpecie::all();
+        $managers = Specie::all();
+        return view('manager.create', ['managers' => $managers, 'species' => $species]);
 
     }
 
@@ -44,7 +47,7 @@ class ManagerController extends Controller
         $manager = new Manager;
         $manager->name = $request->manager_name;
         $manager->surname = $request->manager_surname;
-        $manager->specie_id = $request->specie_id;
+       $manager->specie_id = $request->specie_id;
 
         $manager->save();
         return redirect()->route('manager.index');
@@ -69,8 +72,10 @@ class ManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(manager $manager)
-    {
-        $species = Specie::all();
+    {   
+        $species = AnimalSpecie::all();
+
+        $managers = Specie::all();
         return view('manager.edit', ['manager' => $manager, 'species' => $species]);
 
     }
@@ -102,10 +107,10 @@ class ManagerController extends Controller
     public function destroy(manager $manager)
     {
         if($manager->getAnimal->count()){
-           return 'Trinti negalima, nes turi knygų';
+           return redirect()->route('manager.index')->with('info_message', 'You cant delete this manager.');
        }
 
        $manager->delete();
-       return redirect()->route('manager.index');
+       return redirect()->route('manager.index')->with('success_message', 'Manager was successfuly deleted.');
     }
 }
