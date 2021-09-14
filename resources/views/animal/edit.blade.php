@@ -12,24 +12,33 @@
                         <form method="POST" action="{{route('animal.update',[$animal])}}">
                             <div class="form-group">
                                 <label class="form-label">Name</label>
-                                <input class="form-control" type="text" name="animal_name" value="{{$animal->name}}">
+                                <input class="form-control" 
+                                type="text" 
+                                name="animal_name" 
+                                value="{{old('animal_name',$animal->name)}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Birth year</label>
-                                <input class="form-control" type="text" name="animal_birth" value="{{$animal->birth_year}}">
+                                <input class="form-control" 
+                                type="text" 
+                                name="animal_birth" 
+                                value="{{old('animal_birth',$animal->birth_year)}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Birth year</label>
-                                <textarea id="summernote"  name="animal_book">{{$animal->animal_book}}</textarea>
+                                <textarea id="summernote"  name="animal_book">
+                                    {{old('animal_book',$animal->animal_book)}}
+                                </textarea>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Specie</label>
                                 <select name="specie_id" >
                                     @foreach ($species as $specie)
-                                        <option value="{{$specie->id}}" @if($specie->id == $animal->specie_id) selected @endif>
+                                        <option value="{{$specie->id}}" 
+                                             @if(old('specie_id', $animal->specie_id) == $specie->id) selected @endif>
                                             {{$specie->name}}
                                         </option>
                                     @endforeach
@@ -40,7 +49,8 @@
                                 <label class="form-label">Manager</label>
                                 <select name="manager_id">
                                     @foreach ($managers as $manager)
-                                        <option value="{{$manager->id}}" @if($manager->id == $animal->manager_id) selected @endif>
+                                        <option value="{{$manager->id}}"
+                                            @if(old('manager_id', $animal->manager_id) == $manager->id) selected @endif>
                                             {{$manager->name}} {{$manager->surname}}
                                         </option>
                                     @endforeach

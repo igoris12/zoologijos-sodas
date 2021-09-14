@@ -12,19 +12,26 @@
                         <form method="POST" action="{{route('manager.update',[$manager])}}">
                             <div class="form-group">
                                 <label class="form-label">Name</label>
-                                <input class="form-control" type="text" name="manager_name" value="{{$manager->name}}">
+                                <input class="form-control" 
+                                type="text" 
+                                name="manager_name" 
+                                 value="{{old('manager_name',$manager->name)}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Surname</label>
-                                <input class="form-control" type="text" name="manager_surname" value="{{$manager->surname}}">
+                                <input class="form-control" 
+                                type="text" 
+                                name="manager_surname" 
+                                value="{{old('manager_surname',$manager->surname)}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Specie</label>
                                 <select name="specie_id" >
                                     @foreach ($species as $specie)
-                                        <option value="{{$specie->id}}" @if($specie->id == $manager->specie_id) selected @endif>
+                                        <option value="{{$specie->id}}" 
+                                            @if(old('specie_id', $manager->specie_id) == $specie->id) selected @endif>
                                             {{$specie->name}}
                                         </option>
                                     @endforeach

@@ -115,6 +115,27 @@ class AnimalController extends Controller
      */
     public function update(Request $request, animal $animal)
     {
+
+        
+        $validator = Validator::make($request->all(),
+       [
+           'animal_name' => ['required', 'min:3', 'max:255'],
+           'animal_birth' => ['required', 'integer','min:1000' ,'max:9999'], 
+           'animal_book' => ['required' ],
+           'specie_id' => ['required' ,'integer', 'min:1'],
+           'manager_id' => ['required' ,'integer', 'min:1'],
+
+
+
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
+
+
         $animal->name = $request->animal_name;
         $animal->birth_year = $request->animal_birth;
         $animal->animal_book = $request->animal_book;
