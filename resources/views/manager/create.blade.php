@@ -11,19 +11,26 @@
                         <form method="POST" action="{{route('manager.store')}}">
                             <div class="form-group">
                                 <label class="form-label">Name</label>
-                                <input class="form-control" type="text" name="manager_name">
+                                <input class="form-control" 
+                                type="text" 
+                                name="manager_name" 
+                                value="{{old('manager_name')}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">Surname</label>
-                                <input class="form-control" type="text" name="manager_surname">
+                                <input class="form-control" 
+                                type="text" 
+                                name="manager_surname" 
+                                value="{{old('manager_surname')}}">
                             </div>
 
                            <div class="form-group">
                                 <label class="form-label">Specie</label>
                                 <select name="specie_id" >
+                                    <option value="0" selected disabled>Select specie</option>
                                     @foreach ($species as $specie)
-                                        <option value="{{$specie->id}}">{{$specie->name}}</option>
+                                        <option value="{{$specie->id}}" @if(old('specie_id') == $specie->id) selected @endif>{{$specie->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

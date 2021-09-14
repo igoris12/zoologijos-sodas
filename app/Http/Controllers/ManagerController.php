@@ -6,6 +6,8 @@ use App\Models\manager;
 use Illuminate\Http\Request;
 use App\Models\Specie;
 use App\Models\Specie as AnimalSpecie;
+use Validator;
+
 
 
 
@@ -44,6 +46,24 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(),
+       [
+           'manager_name' => ['required', 'min:3', 'max:64'],
+           'manager_surname' => ['required', 'min:3', 'max:64'],
+           'specie_id' => ['required' ,'integer', 'min:1'],
+
+
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
+
+
+
         $manager = new Manager;
         $manager->name = $request->manager_name;
         $manager->surname = $request->manager_surname;
@@ -89,6 +109,24 @@ class ManagerController extends Controller
      */
     public function update(Request $request, manager $manager)
     {
+
+
+        $validator = Validator::make($request->all(),
+       [
+           'manager_name' => ['required', 'min:3', 'max:64'],
+           'manager_surname' => ['required', 'min:3', 'max:64'],
+           'specie_id' => ['required' ,'integer', 'min:1'],
+
+
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
+
+
         $manager->name = $request->manager_name;
         $manager->surname = $request->manager_surname;
         $manager->specie_id = $request->specie_id;

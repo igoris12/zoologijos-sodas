@@ -6,6 +6,8 @@ use App\Models\animal;
 use Illuminate\Http\Request;
 use App\Models\Manager;
 use App\Models\Specie as AnimalSpecie;
+use Validator;
+
 
 
 
@@ -47,8 +49,27 @@ class AnimalController extends Controller
     public function store(Request $request)
     {   
 
-        $animal = new Animal;
+        $validator = Validator::make($request->all(),
+       [
+           'animal_name' => ['required', 'min:3', 'max:255'],
+           'animal_birth' => ['required', 'integer','min:1000' ,'max:9999'], 
+           'animal_book' => ['required' ],
+           'specie_id' => ['required' ,'integer', 'min:1'],
+           'manager_id' => ['required' ,'integer', 'min:1'],
 
+
+
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
+
+
+
+        $animal = new Animal;
         $animal->name = $request->animal_name;
         $animal->birth_year = $request->animal_birth;
         $animal->animal_book = $request->animal_book;

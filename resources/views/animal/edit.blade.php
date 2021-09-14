@@ -22,7 +22,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">Birth year</label>
-                                <textarea  name="animal_book">{{$animal->animal_book}}</textarea>
+                                <textarea id="summernote"  name="animal_book">{{$animal->animal_book}}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -56,6 +56,12 @@
        </div>
    </div>
 </div>
+<script>
+$(document).ready(function() {
+   $('#summernote').summernote();
+ });
+</script>
+
 @endsection
 
 @section('title') Edit animal @endsection

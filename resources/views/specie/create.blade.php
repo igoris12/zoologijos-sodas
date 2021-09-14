@@ -11,7 +11,8 @@
                         <form method="POST" action="{{route('specie.store')}}">
                             <div class="form-group">
                                 <label class="form-label">Name</label>
-                                <input class="form-control" type="text" name="specie_name">
+                                <input class="form-control" type="text" name="specie_name" value="{{old('specie_name')}}"
+>
                             </div>
                             @csrf
                             <button type="submit" class="btn btn-success">Add</button>

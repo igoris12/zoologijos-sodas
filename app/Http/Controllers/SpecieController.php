@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\specie;
 use Illuminate\Http\Request;
+use Validator;
+
 
 class SpecieController extends Controller
 {
@@ -36,6 +38,17 @@ class SpecieController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(),
+       [
+           'specie_name' => ['required', 'min:3', 'max:64'],
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
         $specie = new Specie;
         $specie->name = $request->specie_name;
         $specie->save();
@@ -75,6 +88,19 @@ class SpecieController extends Controller
      */
     public function update(Request $request, specie $specie)
     {
+
+         $validator = Validator::make($request->all(),
+       [
+           'specie_name' => ['required', 'min:3', 'max:64'],
+       ],
+ 
+       );
+       if ($validator->fails()) {
+           $request->flash();
+           return redirect()->back()->withErrors($validator);
+       }
+
+
         $specie->name = $request->specie_name;
         $specie->save();
         return redirect()->route('specie.index');
