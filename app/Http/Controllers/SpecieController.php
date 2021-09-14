@@ -89,7 +89,7 @@ class SpecieController extends Controller
      */
     public function destroy(specie $specie)
     {
-        if($specie->getManager->count()){
+        if($specie->getManager->count() || $specie->getAnimal->count() ){
            return 'Trinti negalima, nes turi knygų';
        }
        $specie->delete();

@@ -6,15 +6,34 @@
        <div class="col-md-8">
            <div class="card">
                <div class="card-header">Managers</div>
-                <div class="card-body">             
-                    @foreach ($managers as $manager)
-                      <a href="{{route('manager.edit',[$manager])}}"> {{$manager->name}} {{$manager->surname}}</a>
-                      <p>{{$manager->getSpecie->name}}</p>
-                      <form method="POST" action="{{route('manager.destroy', [$manager])}}">
-                      @csrf
-                      <button type="submit">DELETE</button>
-                      </form>
-                    @endforeach    
+                <div class="card-body"> 
+                    
+                    <ul class="list-group">
+                        @foreach ($managers as $manager)
+                                <li class="list-group-item">
+                                    <div class="listBlock">
+                                        <div class="listBlock__content">
+                                            <div class="item">
+                                                <p>{{$manager->name}} {{$manager->surname}} </p>
+                                            </div>
+                                            <div class="item">
+                                                <p><b><i>Specie: </i></b>{{$manager->getSpecie->name}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="listBlock__buttons">
+                                        <a href="{{route('manager.edit',[$manager])}}" class="btn btn-info">Edit</a>
+                                            <form method="POST"  action="{{route('manager.destroy', $manager)}}">
+                                            <button class="btn btn-danger" type="submit">Delete</button>
+                                            @csrf
+                                            </form>
+                                        </div>
+                                    </div> 
+                                </li>
+
+                        @endforeach
+	                </ul>
+
                </div>
            </div>
        </div>

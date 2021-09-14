@@ -9,13 +9,14 @@
                 <div class="card-body">
                     <div class="block__form">
                         <form method="POST" action="{{route('specie.store')}}">
-                            <label class="form-label">Name </label>
-                            <input class="form-control" type="text" name="specie_name">
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" type="text" name="specie_name">
+                            </div>
                             @csrf
-                            <button type="submit">ADD</button>
+                            <button type="submit" class="btn btn-success">Add</button>
                         </form> 
                     </div>
-                        
                </div>
            </div>
        </div>
